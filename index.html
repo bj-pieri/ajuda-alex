@@ -72,6 +72,166 @@
       line-height: 1.8;
     }
 
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      background: var(--primary);
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 600;
+      padding: 15px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .2s, transform .2s;
+      align-self: flex-start;
+    }
+    .hero-cta:hover { background: var(--primary-light); transform: translateY(-2px); }
+
+    /* =====================================================
+       HERO — ACTION CARD (urgência + CTA integrados)
+    ===================================================== */
+    .hero-action-card {
+      margin-top: 36px;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid hsl(0 0% 88%);
+      box-shadow:
+        0 1px 3px rgba(0,0,0,.06),
+        0 8px 32px rgba(0,0,0,.09);
+    }
+
+    /* — Faixa de alerta no topo — */
+    .hac-alert {
+      background: hsl(0 78% 46%);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+    }
+    .hac-alert-pulse {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      flex-shrink: 0;
+      animation: hac-pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes hac-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .4; transform: scale(1.6); }
+    }
+    .hac-alert-text {
+      font-size: .84rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      flex: 1;
+    }
+    .hac-alert-tag {
+      font-size: .78rem;
+      font-weight: 600;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 100px;
+      padding: 3px 10px;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    /* — Corpo do card — */
+    .hac-body {
+      background: #fff;
+      padding: 26px 28px;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    /* Bloco esquerdo: tipo de cirurgia */
+    .hac-surgery {
+      flex: 1;
+      min-width: 0;
+    }
+    .hac-label {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: hsl(0 65% 50%);
+      margin-bottom: 5px;
+    }
+    .hac-surgery-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.25;
+    }
+    .hac-surgery-sub {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    /* Divisória vertical */
+    .hac-divider {
+      width: 1px;
+      background: hsl(0 0% 91%);
+      flex-shrink: 0;
+      align-self: stretch;
+    }
+
+    /* Bloco direito: meta */
+    .hac-goal {
+      flex: 0 0 148px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 3px;
+      background: hsl(0 0% 98%);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .hac-goal-label {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hac-goal-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1;
+      white-space: nowrap;
+      letter-spacing: -.03em;
+    }
+    .hac-goal-sub {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+
+    @media (max-width: 600px) {
+      .hero-action-card { margin-top: 24px; }
+      .hac-body         { flex-direction: column; gap: 0; padding: 18px; }
+      .hac-divider      { width: 100%; height: 1px; flex-shrink: 0; margin: 14px 0; }
+      .hac-goal         { text-align: center; flex: 0 0 auto; width: 100%; padding: 12px 14px; }
+      .hac-surgery      { text-align: center; }
+      .hac-label        { text-align: center; }
+      .hac-goal-value   { font-size: 1.5rem; }
+      .hac-alert-tag    { display: none; }
+    }
+
     /* =====================================================
        HERO — texto puro, sem fotos
     ===================================================== */
@@ -113,23 +273,6 @@
       max-width: 560px;
       line-height: 1.75;
     }
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 32px;
-      background: var(--primary);
-      color: #fff;
-      font-size: .95rem;
-      font-weight: 600;
-      padding: 15px 32px;
-      border-radius: 100px;
-      border: none;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: background .2s, transform .2s;
-    }
-    .hero-cta:hover { background: var(--primary-light); transform: translateY(-2px); }
 
     /* =====================================================
        CARD GENÉRICO
@@ -622,6 +765,7 @@
 <!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="container">
+    <div style="display:flex;flex-direction:column;align-items:flex-start;">
     <span class="hero-eyebrow">Campanha de arrecadação · 2026</span>
     <h1>Um passo de cada vez.<br/>O próximo precisa <em>da sua ajuda.</em></h1>
     <div class="hero-divider"></div>
@@ -630,12 +774,40 @@
       A cirurgia de prótese de quadril pode devolver a vida que ele merece —
       e você pode fazer isso acontecer.
     </p>
+    <!-- Action card: urgência + meta + CTA integrados -->
+    <div class="hero-action-card">
+
+      <!-- Faixa de alerta -->
+      <div class="hac-alert">
+        <span class="hac-alert-pulse"></span>
+        <span class="hac-alert-text">Atenção — situação de emergência</span>
+        <span class="hac-alert-tag">Cirurgia urgente</span>
+      </div>
+
+      <!-- Info: cirurgia + meta -->
+      <div class="hac-body">
+        <div class="hac-surgery">
+          <div class="hac-label">Procedimento necessário</div>
+          <div class="hac-surgery-name">Prótese total<br/>de quadril</div>
+        </div>
+        <div class="hac-divider"></div>
+        <div class="hac-goal">
+          <div class="hac-goal-label">Meta</div>
+          <div class="hac-goal-value">R$&nbsp;25mil</div>
+          <div class="hac-goal-sub">total do procedimento</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
     <button class="hero-cta" onclick="document.getElementById('doar').scrollIntoView({behavior:'smooth'})">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
       </svg>
       Quero ajudar o Alex
     </button>
+    </div>
   </div>
 </section>
 
