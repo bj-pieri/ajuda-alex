@@ -1,1 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajuda o Alex – Cirurgia de Prótese de Quadril</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =====================================================
+       VARIÁVEIS E RESET
+    ===================================================== */
+    :root {
+      --primary:       #e85d26;
+      --primary-light: #ff7840;
+      --dark:          #1a1a2e;
+      --mid:           #444;
+      --muted:         #888;
+      --bg:            #fdfaf6;
+      --card:          #ffffff;
+      --border:        #ede8e1;
+      --pix-green:     #32bcad;
+      --radius:        16px;
+      --shadow:        0 4px 32px rgba(0,0,0,.09);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* =====================================================
+       LAYOUT
+    ===================================================== */
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section       { padding: 56px 0; }
+    .section-tight { padding: 32px 0 56px; }
+
+    .section-label {
+      font-size: .73rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(1.55rem, 4vw, 2.1rem);
+      color: var(--dark);
+      margin-bottom: 18px;
+    }
+    .section-body {
+      color: var(--mid);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* =====================================================
+       HERO — texto puro, sem fotos
+    ===================================================== */
+    .hero {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 72px 0 68px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .73rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 6vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.12;
+      color: var(--dark);
+      max-width: 640px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .hero-divider {
+      width: 52px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+      margin: 24px 0;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--mid);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 32px;
+      background: var(--primary);
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 600;
+      padding: 15px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .2s, transform .2s;
+    }
+    .hero-cta:hover { background: var(--primary-light); transform: translateY(-2px); }
+
+    /* =====================================================
+       CARD GENÉRICO
+    ===================================================== */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+
+    /* =====================================================
+       SEÇÃO — CONHEÇA O BENEFICIÁRIO
+    ===================================================== */
+    .alex-profile {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .alex-avatar {
+      flex-shrink: 0;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 4px solid var(--primary);
+      box-shadow: 0 0 0 5px rgba(232,93,38,.1);
+    }
+    .alex-info { padding-top: 4px; }
+    .alex-info h3 { font-size: 1.35rem; margin-bottom: 6px; }
+    .alex-info p  { font-size: .9rem; color: var(--mid); }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .info-box {
+      background: #fff7f3;
+      border-left: 3px solid var(--primary);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .info-box h4 {
+      font-size: .83rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .info-box p { font-size: .83rem; color: var(--mid); line-height: 1.5; }
+
+    /* =====================================================
+       SEÇÃO — CIRURGIA
+    ===================================================== */
+    .steps { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
+    .step  { display: flex; gap: 14px; align-items: flex-start; }
+    .step-num {
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: .95rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text h4 {
+      font-size: .93rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .step-text p { font-size: .86rem; color: var(--mid); }
+
+    /* =====================================================
+       CARROSSEL — box fixo, imagem sem distorção
+       Regras:
+       · O box (.carousel-slide) tem altura fixa e nunca muda
+       · object-fit: contain → jamais distorce
+       · Se a imagem for menor, o fundo neutro aparece nas bordas
+       · Se a imagem for maior (paisagem), é reduzida para caber
+    ===================================================== */
+    .carousel-section { padding: 0 0 56px; }
+
+    .carousel-wrap {
+      position: relative;
+      margin-top: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+
+    /* Slide: altura fixa, fundo neutro quente */
+    .carousel-slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      height: 380px;
+      background: #ede8e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Imagem: ajusta-se ao box sem distorcer */
+    .carousel-slide img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.92);
+      border: none;
+      border-radius: 50%;
+      width: 42px; height: 42px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,.15);
+      z-index: 10;
+      color: var(--dark);
+      transition: background .15s, transform .15s;
+    }
+    .carousel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 0 2px;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background .2s, transform .2s;
+    }
+    .carousel-dot.active { background: var(--primary); transform: scale(1.35); }
+
+    /* =====================================================
+       PIX — DOAÇÃO (fintech / shadcn-inspired)
+    ===================================================== */
+
+    /* Variáveis do painel */
+    :root {
+      --pix-border:  hsl(214 32% 91%);
+      --pix-muted:   hsl(215 16% 47%);
+      --pix-subtle:  hsl(210 40% 98%);
+      --pix-radius:  12px;
+    }
+
+    .pix-section { background: hsl(210 20% 96%); padding: 56px 0; }
+
+    /* Panel principal — dois blocos verticais separados por borda */
+    .pix-panel {
+      background: #ffffff;
+      border: 1px solid var(--pix-border);
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 24px rgba(0,0,0,.07);
+      overflow: hidden;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Cabeçalho do painel */
+    .pix-header {
+      padding: 28px 32px 24px;
+      border-bottom: 1px solid var(--pix-border);
+    }
+    .pix-header-top {
+      margin-bottom: 10px;
+    }
+    /* Logo acima do card */
+    .pix-logo-above {
+      max-width: 520px;
+      margin: 0 auto 20px;
+      padding: 0 4px;
+    }
+    .pix-logo-above img {
+      width: 110px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .pix-logo-wrap { width: 72px; flex-shrink: 0; }
+    .pix-logo-wrap img { width: 100%; height: auto; display: block; }
+
+    .pix-header-titles {}
+    .pix-header h2 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin: 0;
+    }
+    .pix-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: hsl(142 76% 95%);
+      color: hsl(142 71% 30%);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 100px;
+      margin-top: 5px;
+    }
+    .pix-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: hsl(142 71% 42%);
+    }
+    .pix-header > p {
+      font-size: .9rem;
+      color: var(--pix-muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* Corpo do painel */
+    .pix-body {
+      padding: 24px 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Campo da chave — estilo input readOnly */
+    .pix-key-field {
+      background: var(--pix-subtle);
+      border: 1px solid var(--pix-border);
+      border-radius: var(--pix-radius);
+      padding: 16px 20px;
+    }
+    .pix-key-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--pix-muted);
+      margin-bottom: 6px;
+    }
+    .pix-key-number {
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+    .pix-key-owner {
+      font-size: .82rem;
+      color: var(--pix-muted);
+      margin-top: 5px;
+    }
+
+    /* Botão copiar — shadcn primary */
+    .pix-key-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: hsl(142 76% 36%);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: var(--pix-radius);
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: background .15s, box-shadow .15s, transform .1s;
+      box-shadow: 0 1px 2px rgba(0,0,0,.08);
+    }
+    .pix-key-copy-btn:hover {
+      background: hsl(142 76% 31%);
+      box-shadow: 0 2px 8px rgba(0,0,0,.14);
+    }
+    .pix-key-copy-btn:active { transform: scale(.98); }
+    .pix-key-copy-btn.copied {
+      background: hsl(142 76% 28%);
+    }
+    .pix-key-copy-btn svg { flex-shrink: 0; }
+
+    /* Passos de como pagar */
+    .pix-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: 4px;
+    }
+    .pix-steps-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--pix-muted);
+      margin-bottom: 2px;
+    }
+    .pix-step-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .875rem;
+      color: var(--mid);
+    }
+    .pix-step-num {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--pix-border);
+      color: var(--pix-muted);
+      font-size: .7rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Rodapé de confiança */
+    .pix-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 4px;
+      border-top: 1px solid var(--pix-border);
+    }
+    .pix-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .78rem;
+      color: var(--pix-muted);
+      font-weight: 500;
+    }
+    .pix-trust-item svg { opacity: .6; }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    .footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.62);
+      text-align: center;
+      padding: 48px 20px;
+    }
+    .footer-heart { font-size: 2rem; margin-bottom: 14px; }
+    .footer h3    { color: #ffd166; font-size: 1.35rem; margin-bottom: 10px; }
+    .footer p     { font-size: .87rem; line-height: 1.8; max-width: 420px; margin: 0 auto; }
+    .footer hr    { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 28px auto; max-width: 280px; }
+    .footer-copy  { font-size: .73rem; opacity: .38; }
+
+    /* =====================================================
+       STICKY CTA
+    ===================================================== */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--card);
+      padding: 12px 20px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,.11);
+      z-index: 999;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .sticky-cta .sticky-text        { flex: 1; font-size: .81rem; color: var(--mid); }
+    .sticky-cta .sticky-text strong { display: block; color: var(--dark); font-size: .88rem; }
+    .sticky-cta .btn-donate {
+      background: var(--primary);
+      color: #fff;
+      font-size: .88rem;
+      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 100px;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .2s;
+    }
+    .sticky-cta .btn-donate:hover { background: var(--primary-light); }
+
+    /* =====================================================
+       RESPONSIVO — mobile only (desktop intocado)
+    ===================================================== */
+    @media (max-width: 600px) {
+
+      /* Espaçamento geral */
+      .container        { padding: 0 16px; }
+      .section          { padding: 40px 0; }
+      .section-tight    { padding: 24px 0 40px; }
+      .carousel-section { padding: 0 0 40px; }
+      .pix-section      { padding: 40px 0 88px; }
+
+      /* Hero */
+      .hero         { padding: 44px 0 40px; }
+      .hero-eyebrow { margin-bottom: 12px; }
+      .hero-divider { margin: 16px 0; }
+      .hero-sub     { font-size: .98rem; }
+      .hero-cta     { width: 100%; justify-content: center; margin-top: 24px; padding: 15px 20px; font-size: .97rem; }
+
+      /* Cards */
+      .card { padding: 20px 16px; border-radius: 14px; }
+
+      /* Perfil do Alex */
+      .alex-profile { flex-direction: column; align-items: center; text-align: center; gap: 14px; margin-bottom: 22px; }
+      .alex-avatar  { width: 88px; height: 88px; }
+
+      /* Info grid */
+      .info-grid  { grid-template-columns: 1fr; gap: 10px; margin-top: 16px; }
+      .info-box   { padding: 12px 14px; }
+
+      /* Textos */
+      .section-title { font-size: 1.4rem; margin-bottom: 12px; }
+      .section-body  { font-size: .94rem; }
+
+      /* Steps */
+      .steps    { gap: 14px; margin-top: 16px; }
+      .step     { gap: 12px; }
+      .step-num { width: 34px; height: 34px; font-size: .86rem; }
+      .step-text h4 { font-size: .88rem; }
+      .step-text p  { font-size: .82rem; }
+
+      /* Carrossel */
+      .carousel-wrap  { margin-top: 18px; }
+      .carousel-slide { height: 230px; }
+      .carousel-btn   { width: 36px; height: 36px; font-size: .95rem; }
+
+      /* PIX — fintech panel mobile */
+      .pix-section      { background: #f8f9fa; }
+      .pix-panel        { border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,.08); }
+      .pix-header       { padding: 22px 20px 20px; }
+      .pix-header-top   { gap: 10px; }
+      .pix-logo-wrap    { width: 56px; }
+      .pix-header h2    { font-size: 1.25rem; }
+      .pix-header > p   { font-size: .88rem; margin-top: 6px; }
+      .pix-body         { padding: 20px; gap: 16px; }
+      .pix-key-field    { padding: 14px 16px; }
+      .pix-key-number   { font-size: 1.25rem; letter-spacing: .06em; }
+      .pix-key-copy-btn { width: 100%; justify-content: center; padding: 13px 20px; font-size: .95rem; }
+      .pix-steps        { gap: 10px; }
+      .pix-step-item    { gap: 10px; font-size: .85rem; }
+      .pix-trust        { flex-wrap: wrap; gap: 8px; }
+      .pix-trust-item   { font-size: .76rem; padding: 5px 10px; }
+
+      /* Sticky CTA */
+      .sticky-cta { padding: 10px 16px 16px; }
+    }
+
+    /* =====================================================
+       FADE-IN AO ROLAR
+    ===================================================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">Campanha de arrecadação · 2026</span>
+    <h1>Um passo de cada vez.<br/>O próximo precisa <em>da sua ajuda.</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">
+      Alex enfrenta uma coxartrose avançada que transformou cada passo em dor.
+      A cirurgia de prótese de quadril pode devolver a vida que ele merece —
+      e você pode fazer isso acontecer.
+    </p>
+    <button class="hero-cta" onclick="document.getElementById('doar').scrollIntoView({behavior:'smooth'})">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+      Quero ajudar o Alex
+    </button>
+  </div>
+</section>
+
+<!-- ===================== CONHEÇA O BENEFICIÁRIO ===================== -->
+<section class="section-tight" id="sobre">
+  <div class="container fade-up">
+    <div class="card">
+
+      <div class="alex-profile">
+        <img
+          class="alex-avatar"
+          src="https://raw.githubusercontent.com/bj-pieri/ajuda-alex/refs/heads/main/images/WhatsApp%20Image%202026-03-22%20at%2021.04.20.jpeg"
+          alt="Alex" />
+        <div class="alex-info">
+          <p class="section-label">Conheça o beneficiário</p>
+          <h3>Alex — uma vida interrompida pela dor</h3>
+          <p>Uma pessoa querida, cheia de energia e alegria. Hoje, cada passo é um desafio imenso por causa da coxartrose avançada no quadril.</p>
+        </div>
+      </div>
+
+      <p class="section-label">Entenda a situação</p>
+      <h2 class="section-title">O que é a Coxartrose Sintomática?</h2>
+      <p class="section-body">
+        A <strong>coxartrose</strong> é o desgaste progressivo da articulação do quadril. Com o tempo, a cartilagem que protege os ossos é destruída, fazendo com que eles se atritem diretamente. O resultado: dor intensa, rigidez e perda de mobilidade.
+      </p>
+      <p class="section-body" style="margin-top:12px;">
+        Na forma <strong>sintomática avançada</strong>, como no caso do Alex, a dor é constante — presente até em repouso. Atividades simples como caminhar, subir uma escada ou se levantar da cadeira tornam-se obstáculos reais e diários.
+      </p>
+
+      <div class="info-grid">
+        <div class="info-box">
+          <h4>🦴 Desgaste progressivo</h4>
+          <p>A cartilagem não se regenera. Sem tratamento, o quadril perde função total.</p>
+        </div>
+        <div class="info-box">
+          <h4>😣 Dor incapacitante</h4>
+          <p>A dor crônica afeta sono, humor e a capacidade de trabalhar e viver bem.</p>
+        </div>
+        <div class="info-box">
+          <h4>🚶 Perda de independência</h4>
+          <p>Andar, dirigir, trabalhar — tudo vira um desafio que cresce todo dia.</p>
+        </div>
+        <div class="info-box">
+          <h4>💊 Remédios não resolvem</h4>
+          <p>Medicamentos aliviam temporariamente, mas não revertem o dano estrutural.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== POR QUE A CIRURGIA É NECESSÁRIA ===================== -->
+<section class="section" style="padding-top:0;" id="cirurgia">
+  <div class="container fade-up">
+    <div class="card">
+      <p class="section-label">O caminho para a cura</p>
+      <h2 class="section-title">Por que a Cirurgia é Necessária?</h2>
+      <p class="section-body">
+        A <strong>artroplastia total de quadril</strong> (prótese de quadril) é o único tratamento definitivo para a coxartrose avançada. Consagrada mundialmente, com altíssima taxa de sucesso, ela substitui a articulação desgastada por uma prótese de alta tecnologia.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h4>Remoção da articulação desgastada</h4>
+            <p>O cirurgião remove a cabeça do fêmur e a superfície desgastada do acetábulo (encaixe do quadril).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h4>Implante da prótese</h4>
+            <p>Uma nova articulação de metal, cerâmica ou polietileno é implantada, reconstituindo o movimento natural.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h4>Recuperação e fisioterapia</h4>
+            <p>Em poucas semanas, com fisioterapia, Alex poderá voltar a andar sem dor e retomar a vida.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <h4>Nova qualidade de vida</h4>
+            <p>Mais de 90% dos pacientes ficam livres da dor crônica após a cirurgia e recuperam a independência.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CARROSSEL DE FOTOS ===================== -->
+<section class="carousel-section" id="galeria">
+  <div class="container fade-up">
+    <p class="section-label">Momentos de alegria</p>
+    <h2 class="section-title">Alex em sua melhor versão</h2>
+    <p class="section-body">Registros do Alex rodeado de quem ama. A doença não apagou o sorriso — mas a cirurgia pode devolver a vida plena.</p>
+
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carousel-track">
+
+        <!-- SLIDE 1 — substitua src pelo link desejado -->
+        <div class="carousel-slide">
+          <img src="https://raw.githubusercontent.com/bj-pieri/ajuda-alex/refs/heads/main/images/WhatsApp%20Image%202026-03-22%20at%2021.12.13.jpeg" alt="Foto 1" loading="lazy" />
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carousel-slide">
+          <img src="https://raw.githubusercontent.com/bj-pieri/ajuda-alex/refs/heads/main/images/WhatsApp%20Image%202026-03-22%20at%2021.10.21.jpeg" alt="Foto 2" loading="lazy" />
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="carousel-slide">
+          <img src="https://raw.githubusercontent.com/bj-pieri/ajuda-alex/refs/heads/main/images/WhatsApp%20Image%202026-03-22%20at%2018.33.18.jpeg" alt="Foto 3" loading="lazy" />
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="carousel-slide">
+          <img src="https://raw.githubusercontent.com/bj-pieri/ajuda-alex/refs/heads/main/images/WhatsApp%20Image%202026-03-22%20at%2021.31.59.jpeg" alt="Foto 4" loading="lazy" />
+        </div>
+
+      </div>
+
+      <button class="carousel-btn carousel-prev" onclick="carouselMove(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="carousel-btn carousel-next" onclick="carouselMove(1)"  aria-label="Próximo">&#8594;</button>
+    </div>
+
+    <div class="carousel-dots" id="carousel-dots">
+      <button class="carousel-dot active" onclick="carouselGo(0)"></button>
+      <button class="carousel-dot"        onclick="carouselGo(1)"></button>
+      <button class="carousel-dot"        onclick="carouselGo(2)"></button>
+      <button class="carousel-dot"        onclick="carouselGo(3)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PIX / DOAÇÃO ===================== -->
+<section class="pix-section" id="doar">
+  <div class="container fade-up">
+
+    <!-- Logo acima do card -->
+    <div class="pix-logo-above">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Pix_%28Brazil%29_logo.svg" alt="Logo PIX" />
+    </div>
+
+    <div class="pix-panel">
+
+      <!-- Cabeçalho -->
+      <div class="pix-header">
+        <div class="pix-header-top">
+          <div class="pix-header-titles">
+            <h2>Faça sua doação via PIX</h2>
+            <div class="pix-badge">
+              <span class="pix-badge-dot"></span>
+              Instantâneo · Sem taxas
+            </div>
+          </div>
+        </div>
+        <p>Qualquer valor transforma a vida do Alex. A transferência cai na hora, diretamente para o tratamento.</p>
+      </div>
+
+      <!-- Corpo -->
+      <div class="pix-body">
+
+        <!-- Campo da chave -->
+        <div class="pix-key-field">
+          <div class="pix-key-label">Chave PIX — CPF</div>
+          <div class="pix-key-number" id="pix-key">067.015.546-28</div>
+          <div class="pix-key-owner">Seilamo Alexander da Silva</div>
+        </div>
+
+        <!-- Botão copiar -->
+        <button class="pix-key-copy-btn" id="btn-copy" onclick="copyPix()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span id="btn-copy-text">Copiar chave PIX</span>
+        </button>
+
+        <!-- Como pagar -->
+        <div class="pix-steps">
+          <div class="pix-steps-label">Como transferir</div>
+          <div class="pix-step-item">
+            <span class="pix-step-num">1</span>
+            Abra o aplicativo do seu banco
+          </div>
+          <div class="pix-step-item">
+            <span class="pix-step-num">2</span>
+            Acesse PIX → Pagar → Chave
+          </div>
+          <div class="pix-step-item">
+            <span class="pix-step-num">3</span>
+            Cole a chave copiada e confirme o valor
+          </div>
+        </div>
+
+        <!-- Selos de confiança -->
+        <div class="pix-trust">
+          <div class="pix-trust-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Transferência segura
+          </div>
+          <div class="pix-trust-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+            Cai na hora
+          </div>
+          <div class="pix-trust-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            Sem taxas
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="footer-heart">🧡</div>
+  <h3>Obrigado por cada gesto de amor</h3>
+  <p>Cada real doado é um passo a mais que Alex poderá dar livre de dor.<br/>
+     Você está fazendo parte desta história de recuperação e esperança.</p>
+  <hr />
+  <p class="footer-copy">Campanha para cirurgia de prótese de quadril · ALEX · 2026</p>
+</footer>
+
+<!-- ===================== STICKY CTA ===================== -->
+<div class="sticky-cta" id="sticky-cta" style="display:none;">
+  <div class="sticky-text">
+    <strong>Doe agora via PIX</strong>
+    Meta: R$ 25.000,00
+  </div>
+  <button class="btn-donate" onclick="document.getElementById('doar').scrollIntoView({behavior:'smooth'})">Ajudar Alex</button>
+</div>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+  /* ── Copiar chave PIX ─────────────────────────────── */
+  function copyPix() {
+    var key = document.getElementById('pix-key').textContent.trim().replace(/[^\d]/g, '');  // strip formatting
+    var btn = document.getElementById('btn-copy');
+    var txt = document.getElementById('btn-copy-text');
+
+    function markCopied() {
+      btn.classList.add('copied');
+      txt.textContent = '✓ Chave copiada!';
+      setTimeout(function() {
+        btn.classList.remove('copied');
+        txt.textContent = 'Copiar chave PIX';
+      }, 3000);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(key).then(markCopied).catch(function() {
+        fallbackCopy(key); markCopied();
+      });
+    } else {
+      fallbackCopy(key); markCopied();
+    }
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity  = '0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+
+  /* ── Carrossel ────────────────────────────────────── */
+  var carIdx   = 0;
+  var carTotal = document.querySelectorAll('.carousel-slide').length;
+
+  function carouselRender() {
+    document.getElementById('carousel-track').style.transform =
+      'translateX(-' + (carIdx * 100) + '%)';
+    document.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === carIdx);
+    });
+  }
+
+  function carouselMove(dir) {
+    carIdx = (carIdx + dir + carTotal) % carTotal;
+    carouselRender();
+  }
+
+  function carouselGo(i) {
+    carIdx = i;
+    carouselRender();
+  }
+
+  /* Auto-play a cada 4,5 s */
+  setInterval(function() { carouselMove(1); }, 4500);
+
+  /* Swipe touch */
+  (function() {
+    var startX = 0;
+    var wrap = document.querySelector('.carousel-wrap');
+    if (!wrap) return;
+    wrap.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    wrap.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) carouselMove(diff > 0 ? 1 : -1);
+    }, { passive: true });
+  })();
+
+  /* ── Fade-in ao rolar ─────────────────────────────── */
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  /* ── Sticky CTA ───────────────────────────────────── */
+  var stickyCta = document.getElementById('sticky-cta');
+  window.addEventListener('scroll', function() {
+    stickyCta.style.display = window.scrollY > 320 ? 'flex' : 'none';
+  }, { passive: true });
+</script>
+
+</body>
+</html>
